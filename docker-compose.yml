@@ -1,0 +1,11 @@
+version: '3.9'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app
+#    restart: unless-stopped
+    volumes:
+      - ./logs/:/app/logs
+    command: ["python", "main.py"]
