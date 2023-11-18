@@ -1,5 +1,3 @@
-import os
-
 from loguru import logger
 from dotenv import load_dotenv
 from os import environ, path
