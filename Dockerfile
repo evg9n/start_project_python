@@ -1,7 +1,5 @@
 FROM python:3.10.12-alpine
 
-ENV TZ=Europe/Moscow
-
 WORKDIR /app
 
 RUN python -m pip install --upgrade pip

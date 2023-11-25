@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 class Constants:
 
     def __init__(self):
-        load_dotenv(path.abspath('.env'))
+        load_dotenv(path.abspath(path.join('env', '.env')))
 
         self.FORMAT_LOGGER = environ.get('FORMAT_LOGGER')
         self.LEVEL_FILE_LOGGER = environ.get('LEVEL_FILE_LOGGER')
