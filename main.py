@@ -6,6 +6,7 @@ from os.path import abspath, join
 from constants import Constants
 
 constants = Constants()
+logger.remove()
 logger.add(
     abspath(join('logs', '{time:YYYY-MM-DD  HH.mm.ss}.log')),  # Путь к файлу логов с динамическим именем
     rotation=constants.ROTATION_LOGGER,  # Ротация логов каждый день
