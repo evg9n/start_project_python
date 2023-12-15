@@ -8,6 +8,7 @@ services:
 #    restart: unless-stopped
     env_file:
       - ./env/docker.env
+      - ./env/.env
     volumes:
       - ./logs/:/app/logs
     command: ["python", "main.py"]
