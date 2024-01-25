@@ -1,4 +1,4 @@
-from os import environ, path, listdir
+from os import environ, path, listdir, getenv
 
 from dotenv import load_dotenv
 
@@ -15,12 +15,13 @@ class Constants:
         except FileNotFoundError:
             pass
 
-        self.FORMAT_LOGGER = (environ.get('FORMAT_LOGGER') or
-                              '{time:YYYY-MM-DD HH:mm:ss} | {level} | {file} | {message}')
-        self.LEVEL_FILE_LOGGER = environ.get('LEVEL_FILE_LOGGER') or 'DEBUG'
-        self.LEVEL_CONSOLE_LOGGER = environ.get('LEVEL_CONSOLE_LOGGER') or 'INFO'
-        self.ROTATION_LOGGER = environ.get('ROTATION_LOGGER') or '1 day'
-        self.SERIALIZE_LOGGER = environ.get('SERIALIZE_LOGGER') == 'True'
+        # логирование
+        self.FORMAT_LOGGER = getenv('FORMAT_LOGGER',
+                                    default='{time:YYYY-MM-DD HH:mm:ss} | {level} | {file} | {message}')
+        self.LEVEL_FILE_LOGGER = getenv('LEVEL_FILE_LOGGER', default='DEBUG')
+        self.LEVEL_CONSOLE_LOGGER = getenv('LEVEL_CONSOLE_LOGGER', default='INFO')
+        self.ROTATION_LOGGER = getenv('ROTATION_LOGGER', default='1 day')
+        self.SERIALIZE_LOGGER = getenv('SERIALIZE_LOGGER', default=None) == 'True'
 
     def __setattr__(self, name, value):
         if name in self.__dict__:
