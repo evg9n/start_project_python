@@ -16,13 +16,22 @@ logger.add(
     serialize=constants.SERIALIZE_LOGGER,  # Сериализация в JSON
 )
 
-# # Вывод лога в консоль
-# logger.add(
-#     sink=print,
-#     level=constants.LEVEL_CONSOLE_LOGGER,
-#     format=constants.FORMAT_LOGGER,
-# )
+# Вывод лога в консоль
+logger.add(
+    sink=print,
+    level=constants.LEVEL_CONSOLE_LOGGER,
+    format=constants.FORMAT_LOGGER,
+)
 
 
 if __name__ == '__main__':
     logger.info('RUN PROJECT')
+    import os
+
+    # Получение абсолютного пути к текущему файлу
+    current_file_path = os.path.abspath(__file__)
+    # Получение директории, в которой находится текущий файл
+    current_directory = os.path.dirname(current_file_path)
+
+    print("Абсолютный путь к текущему файлу:", current_file_path)
+    print("Директория текущего файла:", current_directory)
