@@ -1,11 +1,17 @@
-FROM python:3.10.12-alpine
+FROM python:3.12-slim
+
+RUN pip install poetry
+
+# Poetry ставит пакеты прямо в системный Python
+RUN poetry config virtualenvs.create false
 
 WORKDIR /app
 
-RUN python -m pip install --upgrade pip
+COPY pyproject.toml poetry.lock* ./
+#RUN poetry install --no-interaction --no-ansi
+RUN poetry install --no-interaction --no-ansi --no-root
 
 COPY . .
 
-RUN pip install --no-cache-dir -r requirements.txt
-
 CMD ["python", "main.py"]
+
