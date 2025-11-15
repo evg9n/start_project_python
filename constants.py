@@ -1,11 +1,21 @@
 from os import path, listdir, getenv
-
 from dotenv import load_dotenv
 
 
 class Constants:
+    _instance = None
+    _initialized = False
+
+    def __new__(cls, *args, **kwargs):
+        if not cls._instance:
+            cls._instance = super().__new__(cls)
+        return cls._instance
 
     def __init__(self):
+        if self._initialized:
+            return
+
+        self._initialized = True
         # определение пути к директории текущего файла
         current_dir = path.dirname(path.abspath(__file__))
         # определение пути к директории файлов переменных окруженний
